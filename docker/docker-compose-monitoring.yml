@@ -29,7 +29,7 @@ services:
 #      - back_net
 #      - front_net
   prometheus:
-    image: ${USERNAME}/prometheus
+    image: ${USER_NAME}/prometheus
     networks:
       - back_net
       - front_net
@@ -86,7 +86,7 @@ services:
       - 3000:3000
 
   alertmanager:
-    image: ${USERNAME}/alertmanager
+    image: ${USER_NAME}/alertmanager
     networks:
       - back_net
       - front_net
