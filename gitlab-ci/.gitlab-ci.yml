@@ -1,6 +1,5 @@
 image: ruby:2.4.2
 
-
 stages:
   - build
   - test
@@ -8,16 +7,17 @@ stages:
   - stage
   - production
 
-build_job:
-  stage: build
-  script:
-    - echo 'Building'
 variables:
   DATABASE_URL: 'mongodb://mongo/user_posts'
 
 before_script:
   - cd reddit
   - bundle install
+
+build_job:
+  stage: build
+  script:
+    - echo 'Building'
 
 test_unit_job:
   stage: test
@@ -38,6 +38,7 @@ deploy_dev_job:
   environment:
     name: dev
     url: http://dev.example.com
+
 branch review:
   stage: review
   script: echo "Deploy to $CI_ENVIRONMENT_SLUG"
@@ -47,7 +48,7 @@ branch review:
   only:
     - branches
   except:
-- master
+    - master
 
 staging:
   stage: stage
@@ -59,6 +60,15 @@ staging:
   environment:
     name: beta
     url: http://beta.example.com
+
+production:
+  stage: production
+  when: manual
+  script:
+    - echo 'Deploy'
+  environment:
+    name: production
+    url: http://example.com
 
 production:
   stage: production
