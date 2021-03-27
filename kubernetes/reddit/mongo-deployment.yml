@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:smongo-gce-pd-storage #  mongo
+  name: smongo-gce-pd-storage 
   labels:
     app: reddit
     component: mongo
